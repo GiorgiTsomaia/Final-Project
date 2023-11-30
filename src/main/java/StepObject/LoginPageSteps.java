@@ -2,7 +2,11 @@ package StepObject;
 
 import DataObject.LoginPageData;
 import PageObject.LoginPage;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+
+import static com.codeborne.selenide.Selectors.byName;
+import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPageSteps extends LoginPage {
     @Step("ავთენთიფიკაციაზე გადასვლა")
@@ -29,6 +33,14 @@ public class LoginPageSteps extends LoginPage {
     public LoginPageSteps ClickRememberMe(){
         _rememberMeButton.click();
         return this;
+    }
+    @Step
+    public SelenideElement LogInButton(){
+        return $(".login-button");
+    }
+    @Step
+    public SelenideElement RememberMe(){
+        return _rememberMeButton;
     }
 
 }

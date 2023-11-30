@@ -20,9 +20,7 @@ public class CartPageTest extends ChromeRunner {
                 .AddItemInCart()
                 .CloseSidePanelWidget()
                 .ClickOnCartButton();
-        sleep(1000);
-        SelenideElement _table = $(".cart-table-section").$(".cart");
-        Assert.assertFalse(_table.find(By.cssSelector("tbody")).is(Condition.empty),"შევამოწმოთ რომ ნამდვილად დაემატა კალათში");
+        Assert.assertFalse(cartPageSteps.Cart().find(By.cssSelector("tbody")).is(Condition.empty),"შევამოწმოთ რომ ნამდვილად დაემატა კალათში");
     }
     @Test
     @Description("წარმატებული კალათიდან წაშლა, და შევამოწმოთ რომ ნამდვილად წაიშალა")
@@ -33,8 +31,6 @@ public class CartPageTest extends ChromeRunner {
                 .CloseSidePanelWidget()
                 .ClickOnCartButton()
                 .DeleteItemFromCart();
-        sleep(500);
-        SelenideElement _table = $(".cart-table-section").$(".cart");
-        Assert.assertTrue(_table.find(By.cssSelector("tbody")).is(Condition.empty),"შევამოწმოთ რომ ნამდვილად წაიშალა კალათიდან");
+        Assert.assertTrue(cartPageSteps.Cart().find(By.cssSelector("tbody")).is(Condition.empty),"შევამოწმოთ რომ ნამდვილად წაიშალა კალათიდან");
     }
 }

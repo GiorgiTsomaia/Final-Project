@@ -12,6 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.text.NumberFormat;
+import java.time.Duration;
 import java.util.Collections;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -23,9 +24,7 @@ public class SalePageTest extends ChromeRunner {
     public void CheckIfSaleExists(){
         salePageSteps
                 .OpenSalePage();
-        sleep(1000);
-        ElementsCollection _products = $$(".product-wrapper");
-        Assert.assertFalse(_products.isEmpty());
+        Assert.assertFalse(salePageSteps.ReturnProductItems().isEmpty());
     }
     @Test
     @Description("შევამოწმოთ რომ ფასდაკლებული ფასი ნაკლებია ორიგინალი ფასის")
@@ -33,14 +32,7 @@ public class SalePageTest extends ChromeRunner {
     public void CheckIfSalePriceIsLowerThanOriginal(){
         salePageSteps
                 .OpenSalePage();
-        sleep(200);
-        ElementsCollection _products = $$(".product-wrapper");
-
-        for (SelenideElement element : _products) {
-            float _previousValue = Float.valueOf((element.$(".price").$(By.tagName("del")).$(".amount").getText()));
-            float _saleValue = Float.valueOf(element.$(".price").$(By.tagName("ins")).$(".amount").getText().replaceFirst(".$",""));
-            Assert.assertFalse( _previousValue < _saleValue);
-        }
+        Assert.assertTrue(salePageSteps.CheckSalePrice());
 
     }
 }

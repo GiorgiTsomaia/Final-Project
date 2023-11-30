@@ -6,6 +6,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 
 import java.time.Duration;
 
@@ -16,6 +17,7 @@ public class CartPageSteps extends CartPage {
     @Step("კალათში გადასვლა")
     public CartPageSteps ClickOnCartButton(){
         _cartButton.click();
+        $(".cart-table-section").$(By.tagName("thead")).shouldNot(Condition.empty, Duration.ofMillis(1000));
         return this;
     }
     @Step("პროდუქტის და არომატის არჩევა")
@@ -39,7 +41,12 @@ public class CartPageSteps extends CartPage {
     @Step("კალათში დამატება")
     public CartPageSteps DeleteItemFromCart(){
         $(".cart-table-section").$(".remove").click();
+        $(".cart-table-section").$(By.tagName("tbody")).shouldBe(Condition.empty, Duration.ofMillis(1000));
         return this;
+    }
+    @Step
+    public SelenideElement Cart(){
+        return $(".cart-table-section").$(".cart");
     }
 
 

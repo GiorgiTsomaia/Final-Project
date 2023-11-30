@@ -23,8 +23,7 @@ public class LoginPageTest extends ChromeRunner {
                 .InputUsername()
                 .InputPassword()
                 .ClickOnLoginButton();
-                SelenideElement _formAuth = $(".login-button");
-                Assert.assertTrue(_formAuth.isDisplayed(), "მცდარი ავტორიზაცია, ვამოწმებთ რომ ვერ გაიარა ავტორიზაცია");
+        Assert.assertTrue(loginPageSteps.LogInButton().isDisplayed(), "მცდარი ავტორიზაცია, ვამოწმებთ რომ ვერ გაიარა ავტორიზაცია");
     }
     @Test
     @Description("ავტორიზაცია იუზერის სახელის გარეშე")
@@ -32,8 +31,7 @@ public class LoginPageTest extends ChromeRunner {
         loginPageSteps.ClickOnFormAuth()
                 .InputPassword()
                 .ClickOnLoginButton();
-        SelenideElement _formAuth = $(".login-button");
-        Assert.assertTrue(_formAuth.isDisplayed(), "მცდარი ავტორიზაცია უზერის სახელის გარეშე, ვამოწმებთ რომ ვერ გაიარა ავტორიზაცია");
+        Assert.assertTrue(loginPageSteps.LogInButton().isDisplayed(), "მცდარი ავტორიზაცია უზერის სახელის გარეშე, ვამოწმებთ რომ ვერ გაიარა ავტორიზაცია");
     }
     @Test
     @Description("ავტორიზაცია იუზერის პაროლის გარეშე")
@@ -41,16 +39,15 @@ public class LoginPageTest extends ChromeRunner {
         loginPageSteps.ClickOnFormAuth()
                 .InputUsername()
                 .ClickOnLoginButton();
-        SelenideElement _formAuth = $(".login-button");
-        Assert.assertTrue(_formAuth.isDisplayed(), "მცდარი ავტორიზაცია იუზერის პაროლის გარეშე, ვამოწმებთ რომ ვერ გაიარა ავტორიზაცია");
+        Assert.assertTrue(loginPageSteps.LogInButton().isDisplayed(), "მცდარი ავტორიზაცია იუზერის პაროლის გარეშე, ვამოწმებთ რომ ვერ გაიარა ავტორიზაცია");
     }
     @Test
     @Description("შევამოწმოთ რომ ეჭირება დამახსოვრების ღილაკს")
     public void PressRememberMeButton(){
         loginPageSteps.ClickOnFormAuth()
                 .ClickRememberMe();
-        SelenideElement _rememberMeButton = $(byName("rememberme"));
-        Assert.assertTrue(_rememberMeButton.isSelected());
+
+        Assert.assertTrue(loginPageSteps.RememberMe().isSelected());
     }
 
 }
